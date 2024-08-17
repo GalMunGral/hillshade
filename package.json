@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "esbuild hillshade.ts --bundle --watch --outdir=dist --serve --serve-fallback=index.html",
-    "build": "esbuild hillshade.ts --bundle --outdir=dist && cp index.html dist"
+    "dev": "esbuild hillshade.ts --loader:.wgsl=text --bundle --watch --outdir=dist --serve --serve-fallback=index.html",
+    "build": "esbuild hillshade.ts --loader:.wgsl=text --bundle --outdir=dist && cp index.html dist"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@webgpu/types": "^0.1.44",
     "esbuild": "^0.23.1",
     "typescript": "^5.5.4"
   },
