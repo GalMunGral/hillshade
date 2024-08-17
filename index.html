@@ -1,0 +1,41 @@
+<head>
+  <style>
+    label {
+      display: block;
+      width: 100px;
+      font-family: monospace;
+    }
+  </style>
+  <script type="module" src="hillshade.js"></script>
+</head>
+<body style="margin: 100px 20%">
+  <div style="display: flex; justify-content: space-between">
+    <div>
+      <div>
+        <label>exaggeration</label>
+        <input id="exaggeration" type="range" min="1" max="10" step="0.1" />
+      </div>
+      <div>
+        <label>ambient</label>
+        <input id="ambient" type="range" min="0" max="1" step="0.01" />
+      </div>
+      <div>
+        <label>diffuse</label>
+        <input id="diffuse" type="range" min="0" max="1" step="0.01" />
+      </div>
+      <div>
+        <label>specular</label>
+        <input id="specular" type="range" min="0" max="1" step="0.01" />
+      </div>
+      <div>
+        <label>phi</label>
+        <input id="phi" type="range" min="0" max="90" />
+      </div>
+      <div>
+        <label>theta</label>
+        <input id="theta" type="range" min="0" max="360" />
+      </div>
+    </div>
+    <canvas id="hillshade" width="512" height="512"></canvas>
+  </div>
+</body>

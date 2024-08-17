@@ -1,0 +1,20 @@
+{
+  "name": "hillshade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "esbuild hillshade.ts --bundle --watch --outdir=dist --serve --serve-fallback=index.html",
+    "build": "esbuild hillshade.ts --bundle --outdir=dist && cp index.html dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.23.1",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@types/three": "^0.167.1",
+    "three": "^0.167.1"
+  }
+}
