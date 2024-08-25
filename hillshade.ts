@@ -1,5 +1,6 @@
 import shaderSrc from "./hillshade.wgsl";
-import { createBuffer, loadDEM } from "./utils";
+import { createBuffer } from "./utils";
+import demUrl from "./IL_Statewide_Lidar_DEM_WGS.png";
 
 async function main() {
   const adapter = (await navigator.gpu.requestAdapter())!;
@@ -8,8 +9,8 @@ async function main() {
   const canvas = document.querySelector("canvas")!;
   const context: GPUCanvasContext = canvas.getContext("webgpu")!;
 
-  const demSize = window.innerHeight;
-  canvas.width = canvas.height = demSize;
+  const demSize = 1024;
+  canvas.width = canvas.height = window.innerHeight;
 
   const presentationFormat = navigator.gpu.getPreferredCanvasFormat();
   context.configure({ device, format: presentationFormat });
@@ -76,8 +77,13 @@ async function main() {
       GPUTextureUsage.COPY_DST |
       GPUTextureUsage.RENDER_ATTACHMENT,
   });
+
+  const res = await fetch(demUrl);
+  const blob = await res.blob();
+  const bitmap = await createImageBitmap(blob);
+
   device.queue.copyExternalImageToTexture(
-    { source: await loadDEM(demSize) },
+    { source: bitmap },
     { texture },
     { width: demSize, height: demSize }
   );
@@ -115,7 +121,7 @@ async function main() {
     ambient: 0.2,
     diffuse: 0,
     specular: 1,
-    exaggeration: 1,
+    exaggeration: 5,
     theta: 0,
     phi: 45,
   };
